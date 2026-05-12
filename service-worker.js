@@ -1,21 +1,24 @@
-// Simple Service Worker for Phytomedix Bio-OS
-const CACHE_NAME = 'phytomedix-bioos-v1';
-
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll([
-        '/phytomedix--Excell-Nutrients-twin/',
-        '/phytomedix--Excell-Nutrients-twin/index.html'
-      ]);
-    })
-  );
-});
-
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request).then((response) => {
-      return response || fetch(event.request);
-    })
-  );
-});
+{
+  "name": "Phytomedix Bio-OS",
+  "short_name": "Bio-OS",
+  "description": "Living Digital Twin for Precision Nutrition",
+  "id": "phytomedix-bioos",
+  "start_url": "/phytomedix--Excell-Nutrients-twin/",
+  "scope": "/phytomedix--Excell-Nutrients-twin/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0A2540",
+  "theme_color": "#D4AF77",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

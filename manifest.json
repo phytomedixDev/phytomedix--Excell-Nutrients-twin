@@ -20,5 +20,12 @@
       "sizes": "512x512",
       "type": "image/png"
     }
+  ],
+  "shortcuts": [
+    {
+      "name": "New Assessment",
+      "url": "/phytomedix--Excell-Nutrients-twin/",
+      "description": "Start a new Bio-OS assessment"
+    }
   ]
 }

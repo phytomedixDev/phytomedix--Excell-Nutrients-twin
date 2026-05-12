@@ -4,13 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Phytomedix | Deep Consult v29.0</title>
-  <!-- === PWA MANIFEST (NEW) === -->
+
+<!-- === PWA MANIFEST === -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#D4AF77">
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- === PWA SERVICE WORKER REGISTRATION === -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(function(registration) {
+          console.log('Service Worker registered successfully');
+        })
+        .catch(function(error) {
+          console.log('Service Worker registration failed:', error);
+        });
+    });
+  }
+</script>
+
 <style>
   :root { --forest: #1a3d2b; --green: #2e7d4f; --mint: #e6f5ec; --ink: #1a2332; --slate: #4a5568; --mist: #f4f7f5; --white: #ffffff; --border: #dde5e0; }
   body { font-family: 'Outfit', sans-serif; background: var(--mist); color: var(--ink); padding: 20px; display: flex; flex-direction: column; align-items: center; }
@@ -20,26 +36,25 @@
   .step { display: none; }
   .step.active { display: block; animation: fadeIn 0.4s ease; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-  
+ 
   .field-row { margin-bottom: 15px; }
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   label { font-size: 11px; font-weight: 700; color: var(--slate); text-transform: uppercase; margin-bottom: 6px; display: block; }
   input[type="text"], input[type="number"], input[type="email"], select { width: 100%; padding: 12px; border: 1.5px solid var(--border); border-radius: 8px; font-family: 'Outfit'; }
-  
+ 
   .btn { width: 100%; padding: 14px; background: var(--forest); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; margin-top: 10px; font-size: 15px; }
   .btn-outline { background: white; color: var(--forest); border: 1.5px solid var(--forest); }
-  
+ 
   .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .check-label { padding: 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
   .check-label:has(input:checked) { background: var(--mint); border-color: var(--green); }
   .check-label input { margin: 0; }
-
   /* Dashboard Styles */
   .dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
   .stat-box { background: var(--mint); padding: 15px; border-radius: 10px; text-align: center; border: 1px solid var(--green); }
   .stat-val { font-size: 24px; font-weight: 800; color: var(--forest); font-family: 'Syne'; }
   .stat-lbl { font-size: 10px; text-transform: uppercase; color: var(--green); font-weight: 600; }
-  
+ 
   .supp-card { border: 1px solid var(--border); padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid var(--green); }
   .supp-title { font-weight: 700; font-family: 'Syne'; color: var(--forest); display: flex; justify-content: space-between; }
   .supp-dose { font-family: 'DM Mono'; font-size: 11px; background: var(--mint); padding: 3px 8px; border-radius: 4px; }
